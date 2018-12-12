@@ -88,7 +88,7 @@ export default {
   data() {
     return {
       polls: [],
-      activeName: 'Food',
+      activeName: 'Any',
     }
   },
   computed: {

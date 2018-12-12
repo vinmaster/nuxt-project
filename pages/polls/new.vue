@@ -10,6 +10,7 @@
 
         <el-form-item label="Category" prop="category">
           <el-select v-model="form.category" placeholder="Select One">
+            <el-option label="Any" value="Any" />
             <el-option label="Food" value="Food" />
             <el-option label="Music" value="Music" />
           </el-select>
