@@ -1,46 +1,11 @@
 <template>
   <div>
-    <el-menu
-      id="menubar"
-      :default-active="activeIndex"
-      mode="horizontal"
-    >
-      <el-menu-item
-        index="1"
-        @click="navigate('index')"
-      >
-        Pollbox
-      </el-menu-item>
-      <el-menu-item
-        index="2"
-        @click="navigate('polls')"
-      >
-        Polls
-      </el-menu-item>
-    </el-menu>
     <nuxt/>
   </div>
 </template>
 
 <script>
 export default {
-  data() {
-    return {
-      activeIndex: null,
-    };
-  },
-  mounted() {
-    const mapping = {
-      'index': '1',
-      'polls': '2',
-    };
-    this.activeIndex = mapping[this.$route.name];
-  },
-  methods: {
-    navigate(name) {
-      this.$nuxt.$router.replace({ name });
-    },
-  },
 }
 </script>
 
@@ -70,5 +35,9 @@ a {
 *:after {
   box-sizing: border-box;
   margin: 0;
+}
+
+.text-align-center {
+  text-align: center;
 }
 </style>

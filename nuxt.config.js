@@ -43,13 +43,50 @@ module.exports = {
   modules: [
     // Doc: https://github.com/nuxt-community/axios-module#usage
     '@nuxtjs/axios',
-    '@nuxtjs/dotenv'
+    '@nuxtjs/dotenv',
+    '@nuxtjs/axios',
+    '@nuxtjs/auth',
+    '@nuxtjs/toast'
   ],
   /*
   ** Axios module configuration
   */
   axios: {
     // See https://github.com/nuxt-community/axios-module#options
+  },
+
+  // Toast module config
+  toast: {
+    position: 'top-right',
+    duration: 2000,
+    action: {
+      text: 'Close',
+      onClick: (e, toastObject) => {
+        toastObject.goAway(0);
+      }
+    }
+  },
+
+  // Auth module config
+  auth: {
+    strategies: {
+      local: {
+        endpoints: {
+          login: { url: '/api/users/login', method: 'post', propertyName: 'user.refreshToken' },
+          logout: false,
+          user: { url: '/api/users/me', method: 'get', propertyName: 'user'},
+        },
+        tokenRequired: true,
+        // tokenType: 'Bearer'
+        tokenType: 'Refresh'
+      },
+    },
+    redirect: {
+      login: '/?login=1',
+      logout: '/',
+      user: '/me',
+      callback:'/'
+    }
   },
 
   /*

@@ -1,45 +1,53 @@
 <template>
-  <el-main>
-    <el-card class="box-card">
-      <h1 id="title">Welcome Pollbox</h1>
-      <div class="tip">
-        Vote for your favorite categories
-        <i style="color: #E6A23C;" class="el-icon-star-on"/>
-      </div>
-      <div class="tip">
-        See what's trending this week
-        <i style="color: #67C23A;" class="el-icon-date"/>
-      </div>
-    </el-card>
-  </el-main>
+  <div>
+    <navbar />
+    <el-main>
+      <el-card class="box-card">
+        <div id="hero">
+          <h1 id="title">Welcome to Pollbox</h1>
+          <nuxt-link to="/polls"><el-button type="primary">Come check out the polls</el-button></nuxt-link>
+        </div>
+        <div class="tip">
+          Vote for your favorite categories
+          <i style="color: #E6A23C;" class="el-icon-star-on"/>
+        </div>
+        <div class="tip">
+          See what's trending this week
+          <i style="color: #67C23A;" class="el-icon-date"/>
+        </div>
+      </el-card>
+    </el-main>
+  </div>
 </template>
 
 <script>
+import Navbar from '../components/Navbar.vue';
 
 export default {
   components: {
+    Navbar,
   },
   data() {
     return {
-      tabMapOptions: [
-        { label: 'Food', key: 'F' },
-        { label: 'Music', key: 'M' },
-      ],
-      activeName: 'F',
-      createdTimes: 0
     }
   },
   methods: {
-    showCreatedTimes() {
-      this.createdTimes = this.createdTimes + 1
-    }
   },
 }
 </script>
 
 <style scoped>
+#hero {
+  height: 200px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
 #title {
-  text-align: center;
+  font-size: 36px;
+  margin-bottom: 15px;
+  color: #50bfff;
 }
 .tip {
   padding: 16px 16px;

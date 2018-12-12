@@ -1,5 +1,6 @@
 const bcrypt = require('bcryptjs');
 const crypto = require('crypto');
+
 function generateHex(length) {
   return crypto.randomBytes(length / 2).toString('hex');
 }

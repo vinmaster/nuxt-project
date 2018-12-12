@@ -1,6 +1,6 @@
-# nuxt-project
+# Pollbox
 
-> My stupendous Nuxt.js project
+> Poll/voting app using Nuxt.js
 
 ## Build Setup
 
