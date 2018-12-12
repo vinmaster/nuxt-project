@@ -105,7 +105,15 @@ export default {
     },
   },
   beforeMount() {
-    socket.on('poll', ({ poll, action, optionObj }) => {
+    socket.on('poll', this.socketPoll);
+    socket.on('error', this.socketError);
+  },
+  beforeDestroy() {
+    socket.removeListener('poll', this.socketPoll);
+    socket.removeListener('error', this.socketError);
+  },
+  methods: {
+    socketPoll({ poll, action, optionObj }) {
       let index = this.polls.findIndex(p => p.id === poll.id);
       this.polls.splice(index, 1, poll);
       if (action === 'vote') {
@@ -113,12 +121,10 @@ export default {
       } else {
         this.$toast.success(`Unvoted for: ${optionObj.option}`);
       }
-    });
-    socket.on('error', ({ message }) => {
+    },
+    socketError({ message }) {
       this.$toast.error(message);
-    });
-  },
-  methods: {
+    },
     vote(pollId, optionObj) {
       if (!this.$auth.$state.user) {
         this.$toast.error('Please log in');

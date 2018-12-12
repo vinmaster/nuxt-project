@@ -150,8 +150,13 @@ export default {
           this.$toast.success('Registered successfully');
           this.$nuxt.$router.push({ name: 'polls' });
         } catch (e) {
-          console.error(e);
-          this.$toast.error(e.message);
+          if (e.response && e.response.data && e.response.data.error) {
+            console.error(e.response.data);
+            this.$toast.error(e.response.data.error.message);
+          } else {
+            console.error(e);
+            this.$toast.error(e.message);
+          }
         }
       });
     },
