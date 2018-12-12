@@ -148,7 +148,7 @@ export default {
             ...this.form,
           });
           this.$toast.success('Registered successfully');
-          // this.$nuxt.$router.replace({ name: 'login' });
+          this.$nuxt.$router.push({ name: 'polls' });
         } catch (e) {
           console.error(e);
           this.$toast.error(e.message);
