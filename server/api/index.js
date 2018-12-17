@@ -8,6 +8,9 @@ router.post('/users/register', asyncWrap(register));
 router.post('/users/login', asyncWrap(login));
 router.get('/users/me', asyncWrap(auth), asyncWrap(me));
 router.get('/polls', asyncWrap(pollsIndex));
+router.get('/polls/:id', asyncWrap(pollsShow));
+router.patch('/polls/:id', asyncWrap(pollsUpdate));
+router.post('/polls/:id', asyncWrap(pollsUpdate));
 router.post('/polls', asyncWrap(auth), asyncWrap(pollsCreate));
 router.use((req, res, next) => {
   next(new Error('Not Found'));
@@ -111,6 +114,27 @@ async function me(req, res, next) {
 async function pollsIndex(req, res, next) {
   const polls = await Poll.findAll();
   res.json({ polls });
+}
+
+async function pollsShow(req, res, next) {
+  const poll = await Poll.findOne({ where: { id: req.params.id } });
+  res.json({ poll });
+}
+
+async function pollsUpdate(req, res, next) {
+  const poll = await Poll.findOne({ where: { id: req.params.id } });
+  let { title, category, visibility, options, adding, autoclose } = req.body;
+  let addingBy = adding ? req.body.addingBy : null;
+  let closeAt = autoclose ? Date.parse(req.body.closeDateTime) : null;
+  if (options) {
+    options = options.reduce((accumulator, current) => {
+      accumulator.push({ option: current, votes: 0, voters: [] });
+      return accumulator;
+    }, []);
+  } else {
+    options = {};
+  }
+  res.json({ poll });
 }
 
 async function pollsCreate(req, res, next) {

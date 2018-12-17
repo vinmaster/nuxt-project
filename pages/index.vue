@@ -5,7 +5,7 @@
       <el-card class="box-card">
         <div id="hero">
           <h1 id="title">Welcome to Pollbox</h1>
-          <nuxt-link to="/polls"><el-button type="primary">Come check out the polls</el-button></nuxt-link>
+          <nuxt-link to="/polls"><el-button type="primary" style="background-color: #3F51B5;">Come check out the polls</el-button></nuxt-link>
         </div>
         <div class="tip">
           Vote for your favorite categories
@@ -47,13 +47,13 @@ export default {
 #title {
   font-size: 36px;
   margin-bottom: 15px;
-  color: #50bfff;
+  color: #3F51B5;
 }
 .tip {
   padding: 16px 16px;
   background-color: #ecf8ff;
   border-radius: 4px;
-  border-left: 5px solid #50bfff;
+  border-left: 5px solid #3F51B5;
   margin: 20px 0;
 }
 main {
